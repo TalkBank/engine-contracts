@@ -14,7 +14,7 @@ from pathlib import Path
 
 import pytest
 
-from engine_contracts.types import PretokenizedProbeResult
+from engine_contracts.types import PretokenizedBoundaryResult, PretokenizedProbeResult
 
 BASELINE_PATH = Path(__file__).parent.parent / "results" / "stanza_pretokenized.json"
 
@@ -28,7 +28,7 @@ def baseline() -> PretokenizedProbeResult:
     return PretokenizedProbeResult.model_validate(raw)
 
 
-def _find_test(baseline: PretokenizedProbeResult, name: str) -> "PretokenizedProbeResult":
+def _find_test(baseline: PretokenizedProbeResult, name: str) -> PretokenizedBoundaryResult:
     """Find a boundary test by name."""
     matches = [t for t in baseline.boundary_tests if t.name == name]
     assert len(matches) == 1, f"Expected 1 test named {name!r}, found {len(matches)}"

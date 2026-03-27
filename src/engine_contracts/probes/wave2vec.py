@@ -106,9 +106,9 @@ def probe_dictionary() -> DictionaryProbeResult:
     char_tests: list[CharProbeResult] = []
     for char, description in _CLEANED_TEXT_CHARS.items():
         lower_char = char.lower()
-        index = dictionary.get(lower_char)
-        in_dict = index is not None
-        maps_to_blank = index == blank_index if in_dict else False
+        char_index = dictionary.get(lower_char)
+        in_dict = char_index is not None
+        maps_to_blank = char_index == blank_index if in_dict else False
 
         if maps_to_blank:
             hazard = HazardLevel.CRITICAL
@@ -123,7 +123,7 @@ def probe_dictionary() -> DictionaryProbeResult:
             unicode_codepoint=f"U+{ord(char):04X}",
             description=description,
             in_dictionary=in_dict,
-            index=index,
+            index=char_index,
             hazard=hazard,
         ))
 

@@ -70,12 +70,14 @@ def probe_pycantonese() -> PyCantonesProbeResult:
 
     jyut_results: list[JyutpingMapping] = []
     for text, description in _JYUTPING_TESTS:
-        mappings = pycantonese.characters_to_jyutping(text)
-        unmapped = [seg for seg, jyut in mappings if jyut is None]
+        raw_mappings: list[tuple[str, str | None]] = [
+            (seg, jyut) for seg, jyut in pycantonese.characters_to_jyutping(text)
+        ]
+        unmapped = [seg for seg, jyut in raw_mappings if jyut is None]
         jyut_results.append(JyutpingMapping(
             input_text=text,
             description=description,
-            mappings=mappings,
+            mappings=raw_mappings,
             unmapped_segments=unmapped,
         ))
 
@@ -103,10 +105,9 @@ def main() -> int:
         print(f"  {test.input_text:20s} -> {test.segments}")
     print()
     print("--- Jyutping ---")
-    for test in result.jyutping_tests:
-        mapped = [(s, j) for s, j in test.mappings if j is not None]
-        unmapped = test.unmapped_segments
-        print(f"  {test.input_text:20s} -> mapped={mapped}, unmapped={unmapped}")
+    for jtest in result.jyutping_tests:
+        mapped = [(s, j) for s, j in jtest.mappings if j is not None]
+        print(f"  {jtest.input_text:20s} -> mapped={mapped}, unmapped={jtest.unmapped_segments}")
 
     print(f"\nWrote {output_path}")
     return 0

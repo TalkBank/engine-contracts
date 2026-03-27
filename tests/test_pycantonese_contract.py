@@ -14,7 +14,11 @@ from pathlib import Path
 
 import pytest
 
-from engine_contracts.types import PyCantonesProbeResult
+from engine_contracts.types import (
+    JyutpingMapping,
+    PyCantonesProbeResult,
+    SegmentationResult,
+)
 
 BASELINE_PATH = Path(__file__).parent.parent / "results" / "pycantonese_segmentation.json"
 
@@ -28,17 +32,15 @@ def baseline() -> PyCantonesProbeResult:
     return PyCantonesProbeResult.model_validate(raw)
 
 
-def _find_seg(baseline: PyCantonesProbeResult, text: str) -> "SegmentationResult":
+def _find_seg(baseline: PyCantonesProbeResult, text: str) -> SegmentationResult:
     """Find a segmentation test by input text."""
-    from engine_contracts.types import SegmentationResult
     matches = [t for t in baseline.segmentation_tests if t.input_text == text]
     assert len(matches) == 1, f"Expected 1 test for {text!r}, found {len(matches)}"
     return matches[0]
 
 
-def _find_jyut(baseline: PyCantonesProbeResult, text: str) -> "JyutpingMapping":
+def _find_jyut(baseline: PyCantonesProbeResult, text: str) -> JyutpingMapping:
     """Find a jyutping test by input text."""
-    from engine_contracts.types import JyutpingMapping
     matches = [t for t in baseline.jyutping_tests if t.input_text == text]
     assert len(matches) == 1, f"Expected 1 test for {text!r}, found {len(matches)}"
     return matches[0]
