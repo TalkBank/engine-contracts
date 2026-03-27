@@ -1,0 +1,368 @@
+{
+  "engine": "torchaudio.pipelines.MMS_FA",
+  "engine_version": "2.11.0",
+  "total_entries": 29,
+  "blank_index": 0,
+  "wildcard_index": 28,
+  "entries": [
+    {
+      "char": "-",
+      "index": 0,
+      "is_blank": true,
+      "is_wildcard": false
+    },
+    {
+      "char": "a",
+      "index": 1,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "i",
+      "index": 2,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "e",
+      "index": 3,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "n",
+      "index": 4,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "o",
+      "index": 5,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "u",
+      "index": 6,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "t",
+      "index": 7,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "s",
+      "index": 8,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "r",
+      "index": 9,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "m",
+      "index": 10,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "k",
+      "index": 11,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "l",
+      "index": 12,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "d",
+      "index": 13,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "g",
+      "index": 14,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "h",
+      "index": 15,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "y",
+      "index": 16,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "b",
+      "index": 17,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "p",
+      "index": 18,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "w",
+      "index": 19,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "c",
+      "index": 20,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "v",
+      "index": 21,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "j",
+      "index": 22,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "z",
+      "index": 23,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "f",
+      "index": 24,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "'",
+      "index": 25,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "q",
+      "index": 26,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "x",
+      "index": 27,
+      "is_blank": false,
+      "is_wildcard": false
+    },
+    {
+      "char": "*",
+      "index": 28,
+      "is_blank": false,
+      "is_wildcard": true
+    }
+  ],
+  "char_tests": [
+    {
+      "char": "a",
+      "unicode_name": "LATIN SMALL LETTER A",
+      "unicode_codepoint": "U+0061",
+      "description": "lowercase letter",
+      "in_dictionary": true,
+      "index": 1,
+      "hazard": "safe"
+    },
+    {
+      "char": "z",
+      "unicode_name": "LATIN SMALL LETTER Z",
+      "unicode_codepoint": "U+007A",
+      "description": "lowercase letter",
+      "in_dictionary": true,
+      "index": 23,
+      "hazard": "safe"
+    },
+    {
+      "char": "A",
+      "unicode_name": "LATIN CAPITAL LETTER A",
+      "unicode_codepoint": "U+0041",
+      "description": "uppercase letter (cleaned_text preserves case)",
+      "in_dictionary": true,
+      "index": 1,
+      "hazard": "safe"
+    },
+    {
+      "char": "0",
+      "unicode_name": "DIGIT ZERO",
+      "unicode_codepoint": "U+0030",
+      "description": "digit",
+      "in_dictionary": false,
+      "index": null,
+      "hazard": "warning"
+    },
+    {
+      "char": "9",
+      "unicode_name": "DIGIT NINE",
+      "unicode_codepoint": "U+0039",
+      "description": "digit",
+      "in_dictionary": false,
+      "index": null,
+      "hazard": "warning"
+    },
+    {
+      "char": "-",
+      "unicode_name": "HYPHEN-MINUS",
+      "unicode_codepoint": "U+002D",
+      "description": "hyphen (KNOWN CTC blank hazard)",
+      "in_dictionary": true,
+      "index": 0,
+      "hazard": "critical"
+    },
+    {
+      "char": "'",
+      "unicode_name": "APOSTROPHE",
+      "unicode_codepoint": "U+0027",
+      "description": "apostrophe (contractions: don't, it's)",
+      "in_dictionary": true,
+      "index": 25,
+      "hazard": "safe"
+    },
+    {
+      "char": "’",
+      "unicode_name": "RIGHT SINGLE QUOTATION MARK",
+      "unicode_codepoint": "U+2019",
+      "description": "right single quote (smart apostrophe)",
+      "in_dictionary": false,
+      "index": null,
+      "hazard": "warning"
+    },
+    {
+      "char": ".",
+      "unicode_name": "FULL STOP",
+      "unicode_codepoint": "U+002E",
+      "description": "period",
+      "in_dictionary": false,
+      "index": null,
+      "hazard": "warning"
+    },
+    {
+      "char": ",",
+      "unicode_name": "COMMA",
+      "unicode_codepoint": "U+002C",
+      "description": "comma",
+      "in_dictionary": false,
+      "index": null,
+      "hazard": "warning"
+    },
+    {
+      "char": "é",
+      "unicode_name": "LATIN SMALL LETTER E WITH ACUTE",
+      "unicode_codepoint": "U+00E9",
+      "description": "e-acute (French/Spanish)",
+      "in_dictionary": false,
+      "index": null,
+      "hazard": "warning"
+    },
+    {
+      "char": "ü",
+      "unicode_name": "LATIN SMALL LETTER U WITH DIAERESIS",
+      "unicode_codepoint": "U+00FC",
+      "description": "u-umlaut (German)",
+      "in_dictionary": false,
+      "index": null,
+      "hazard": "warning"
+    },
+    {
+      "char": "ç",
+      "unicode_name": "LATIN SMALL LETTER C WITH CEDILLA",
+      "unicode_codepoint": "U+00E7",
+      "description": "c-cedilla (French/Portuguese)",
+      "in_dictionary": false,
+      "index": null,
+      "hazard": "warning"
+    },
+    {
+      "char": "ñ",
+      "unicode_name": "LATIN SMALL LETTER N WITH TILDE",
+      "unicode_codepoint": "U+00F1",
+      "description": "n-tilde (Spanish)",
+      "in_dictionary": false,
+      "index": null,
+      "hazard": "warning"
+    },
+    {
+      "char": "你",
+      "unicode_name": "CJK UNIFIED IDEOGRAPH-4F60",
+      "unicode_codepoint": "U+4F60",
+      "description": "ni3 (Chinese: you)",
+      "in_dictionary": false,
+      "index": null,
+      "hazard": "warning"
+    },
+    {
+      "char": "好",
+      "unicode_name": "CJK UNIFIED IDEOGRAPH-597D",
+      "unicode_codepoint": "U+597D",
+      "description": "hao3 (Chinese: good)",
+      "in_dictionary": false,
+      "index": null,
+      "hazard": "warning"
+    },
+    {
+      "char": "+",
+      "unicode_name": "PLUS SIGN",
+      "unicode_codepoint": "U+002B",
+      "description": "compound marker (stripped by cleaned_text)",
+      "in_dictionary": false,
+      "index": null,
+      "hazard": "warning"
+    },
+    {
+      "char": ":",
+      "unicode_name": "COLON",
+      "unicode_codepoint": "U+003A",
+      "description": "lengthening marker (stripped by cleaned_text)",
+      "in_dictionary": false,
+      "index": null,
+      "hazard": "warning"
+    },
+    {
+      "char": "^",
+      "unicode_name": "CIRCUMFLEX ACCENT",
+      "unicode_codepoint": "U+005E",
+      "description": "syllable pause (stripped by cleaned_text)",
+      "in_dictionary": false,
+      "index": null,
+      "hazard": "warning"
+    },
+    {
+      "char": "⌈",
+      "unicode_name": "LEFT CEILING",
+      "unicode_codepoint": "U+2308",
+      "description": "overlap marker (stripped by cleaned_text)",
+      "in_dictionary": false,
+      "index": null,
+      "hazard": "warning"
+    }
+  ],
+  "blank_mapped_chars": [
+    "-"
+  ]
+}
