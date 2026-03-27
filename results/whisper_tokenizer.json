@@ -1,0 +1,372 @@
+{
+  "engine": "openai-whisper",
+  "engine_version": "20250625",
+  "is_multilingual": true,
+  "word_tests": [
+    {
+      "word": "hello",
+      "description": "simple word",
+      "token_ids": [
+        675,
+        1913
+      ],
+      "decoded_tokens": [
+        "he",
+        "llo"
+      ],
+      "token_count": 2,
+      "roundtrip": "hello",
+      "roundtrip_matches": true
+    },
+    {
+      "word": "because",
+      "description": "expanded shortening: (be)cause -> because",
+      "token_ids": [
+        17566
+      ],
+      "decoded_tokens": [
+        "because"
+      ],
+      "token_count": 1,
+      "roundtrip": "because",
+      "roundtrip_matches": true
+    },
+    {
+      "word": "ice-cream",
+      "description": "hyphenated compound (cleaned_text preserves -)",
+      "token_ids": [
+        573,
+        12,
+        30277
+      ],
+      "decoded_tokens": [
+        "ice",
+        "-",
+        "cream"
+      ],
+      "token_count": 3,
+      "roundtrip": "ice-cream",
+      "roundtrip_matches": true
+    },
+    {
+      "word": "self-driving",
+      "description": "hyphenated modifier",
+      "token_ids": [
+        927,
+        12,
+        47094
+      ],
+      "decoded_tokens": [
+        "self",
+        "-",
+        "driving"
+      ],
+      "token_count": 3,
+      "roundtrip": "self-driving",
+      "roundtrip_matches": true
+    },
+    {
+      "word": "re-do",
+      "description": "hyphenated prefix",
+      "token_ids": [
+        265,
+        12,
+        2595
+      ],
+      "decoded_tokens": [
+        "re",
+        "-",
+        "do"
+      ],
+      "token_count": 3,
+      "roundtrip": "re-do",
+      "roundtrip_matches": true
+    },
+    {
+      "word": "icecream",
+      "description": "compound after + removal: ice+cream -> icecream",
+      "token_ids": [
+        573,
+        30277
+      ],
+      "decoded_tokens": [
+        "ice",
+        "cream"
+      ],
+      "token_count": 2,
+      "roundtrip": "icecream",
+      "roundtrip_matches": true
+    },
+    {
+      "word": "don't",
+      "description": "contraction with straight apostrophe",
+      "token_ids": [
+        13966,
+        380
+      ],
+      "decoded_tokens": [
+        "don",
+        "'t"
+      ],
+      "token_count": 2,
+      "roundtrip": "don't",
+      "roundtrip_matches": true
+    },
+    {
+      "word": "it's",
+      "description": "contraction",
+      "token_ids": [
+        270,
+        311
+      ],
+      "decoded_tokens": [
+        "it",
+        "'s"
+      ],
+      "token_count": 2,
+      "roundtrip": "it's",
+      "roundtrip_matches": true
+    },
+    {
+      "word": "o'clock",
+      "description": "contraction",
+      "token_ids": [
+        78,
+        6,
+        9023
+      ],
+      "decoded_tokens": [
+        "o",
+        "'",
+        "clock"
+      ],
+      "token_count": 3,
+      "roundtrip": "o'clock",
+      "roundtrip_matches": true
+    },
+    {
+      "word": "don’t",
+      "description": "contraction with smart quote U+2019",
+      "token_ids": [
+        13966,
+        913,
+        247,
+        83
+      ],
+      "decoded_tokens": [
+        "don",
+        "�",
+        "�",
+        "t"
+      ],
+      "token_count": 4,
+      "roundtrip": "don’t",
+      "roundtrip_matches": true
+    },
+    {
+      "word": "élève",
+      "description": "French accented word",
+      "token_ids": [
+        8025,
+        31397
+      ],
+      "decoded_tokens": [
+        "él",
+        "ève"
+      ],
+      "token_count": 2,
+      "roundtrip": "élève",
+      "roundtrip_matches": true
+    },
+    {
+      "word": "café",
+      "description": "French loanword",
+      "token_ids": [
+        496,
+        69,
+        526
+      ],
+      "decoded_tokens": [
+        "ca",
+        "f",
+        "é"
+      ],
+      "token_count": 3,
+      "roundtrip": "café",
+      "roundtrip_matches": true
+    },
+    {
+      "word": "München",
+      "description": "German umlaut",
+      "token_ids": [
+        44,
+        3412,
+        2470
+      ],
+      "decoded_tokens": [
+        "M",
+        "ün",
+        "chen"
+      ],
+      "token_count": 3,
+      "roundtrip": "München",
+      "roundtrip_matches": true
+    },
+    {
+      "word": "niño",
+      "description": "Spanish tilde",
+      "token_ids": [
+        3722,
+        7716
+      ],
+      "decoded_tokens": [
+        "ni",
+        "ño"
+      ],
+      "token_count": 2,
+      "roundtrip": "niño",
+      "roundtrip_matches": true
+    },
+    {
+      "word": "你好",
+      "description": "Chinese greeting",
+      "token_ids": [
+        26410
+      ],
+      "decoded_tokens": [
+        "你好"
+      ],
+      "token_count": 1,
+      "roundtrip": "你好",
+      "roundtrip_matches": true
+    },
+    {
+      "word": "食飯",
+      "description": "Cantonese: eat rice",
+      "token_ids": [
+        25155,
+        45229
+      ],
+      "decoded_tokens": [
+        "食",
+        "飯"
+      ],
+      "token_count": 2,
+      "roundtrip": "食飯",
+      "roundtrip_matches": true
+    },
+    {
+      "word": "xxx",
+      "description": "unintelligible marker",
+      "token_ids": [
+        30569,
+        87
+      ],
+      "decoded_tokens": [
+        "xx",
+        "x"
+      ],
+      "token_count": 2,
+      "roundtrip": "xxx",
+      "roundtrip_matches": true
+    },
+    {
+      "word": "yyy",
+      "description": "phonetic marker",
+      "token_ids": [
+        15630,
+        88
+      ],
+      "decoded_tokens": [
+        "yy",
+        "y"
+      ],
+      "token_count": 2,
+      "roundtrip": "yyy",
+      "roundtrip_matches": true
+    },
+    {
+      "word": "a",
+      "description": "single letter",
+      "token_ids": [
+        64
+      ],
+      "decoded_tokens": [
+        "a"
+      ],
+      "token_count": 1,
+      "roundtrip": "a",
+      "roundtrip_matches": true
+    },
+    {
+      "word": "I",
+      "description": "pronoun (uppercase)",
+      "token_ids": [
+        40
+      ],
+      "decoded_tokens": [
+        "I"
+      ],
+      "token_count": 1,
+      "roundtrip": "I",
+      "roundtrip_matches": true
+    }
+  ],
+  "special_char_tests": [
+    {
+      "char": "-",
+      "unicode_name": "HYPHEN-MINUS",
+      "unicode_codepoint": "U+002D",
+      "description": "hyphen",
+      "in_dictionary": true,
+      "index": 12,
+      "hazard": "safe"
+    },
+    {
+      "char": "'",
+      "unicode_name": "APOSTROPHE",
+      "unicode_codepoint": "U+0027",
+      "description": "straight apostrophe",
+      "in_dictionary": true,
+      "index": 6,
+      "hazard": "safe"
+    },
+    {
+      "char": "’",
+      "unicode_name": "RIGHT SINGLE QUOTATION MARK",
+      "unicode_codepoint": "U+2019",
+      "description": "smart right quote",
+      "in_dictionary": true,
+      "index": null,
+      "hazard": "warning"
+    },
+    {
+      "char": "+",
+      "unicode_name": "PLUS SIGN",
+      "unicode_codepoint": "U+002B",
+      "description": "plus (compound marker in CHAT)",
+      "in_dictionary": true,
+      "index": 10,
+      "hazard": "safe"
+    },
+    {
+      "char": ":",
+      "unicode_name": "COLON",
+      "unicode_codepoint": "U+003A",
+      "description": "colon (lengthening in CHAT)",
+      "in_dictionary": true,
+      "index": 25,
+      "hazard": "safe"
+    },
+    {
+      "char": "^",
+      "unicode_name": "CIRCUMFLEX ACCENT",
+      "unicode_codepoint": "U+005E",
+      "description": "caret (syllable pause in CHAT)",
+      "in_dictionary": true,
+      "index": 61,
+      "hazard": "safe"
+    }
+  ],
+  "roundtrip_mismatches": []
+}
