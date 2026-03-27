@@ -1,0 +1,453 @@
+{
+  "engine": "stanza",
+  "engine_version": "1.11.1",
+  "language": "en",
+  "processors": "tokenize,pos,lemma,depparse",
+  "boundary_tests": [
+    {
+      "name": "simple_sentence",
+      "description": "baseline: 3 tokens",
+      "input_words": [
+        "the",
+        "dog",
+        "runs"
+      ],
+      "input_count": 3,
+      "output_count": 3,
+      "boundary_preserved": true,
+      "output_tokens": [
+        {
+          "text": "the",
+          "upos": "DET",
+          "lemma": "the",
+          "deprel": "det"
+        },
+        {
+          "text": "dog",
+          "upos": "NOUN",
+          "lemma": "dog",
+          "deprel": "nsubj"
+        },
+        {
+          "text": "runs",
+          "upos": "VERB",
+          "lemma": "run",
+          "deprel": "root"
+        }
+      ]
+    },
+    {
+      "name": "compound_stripped",
+      "description": "ice+cream after cleaned_text strips +",
+      "input_words": [
+        "the",
+        "icecream",
+        "melted"
+      ],
+      "input_count": 3,
+      "output_count": 3,
+      "boundary_preserved": true,
+      "output_tokens": [
+        {
+          "text": "the",
+          "upos": "DET",
+          "lemma": "the",
+          "deprel": "det"
+        },
+        {
+          "text": "icecream",
+          "upos": "NOUN",
+          "lemma": "icecream",
+          "deprel": "nsubj"
+        },
+        {
+          "text": "melted",
+          "upos": "VERB",
+          "lemma": "melt",
+          "deprel": "root"
+        }
+      ]
+    },
+    {
+      "name": "compound_split",
+      "description": "hypothetical: space-separated compound",
+      "input_words": [
+        "the",
+        "ice",
+        "cream",
+        "melted"
+      ],
+      "input_count": 4,
+      "output_count": 4,
+      "boundary_preserved": true,
+      "output_tokens": [
+        {
+          "text": "the",
+          "upos": "DET",
+          "lemma": "the",
+          "deprel": "det"
+        },
+        {
+          "text": "ice",
+          "upos": "NOUN",
+          "lemma": "ice",
+          "deprel": "compound"
+        },
+        {
+          "text": "cream",
+          "upos": "NOUN",
+          "lemma": "cream",
+          "deprel": "nsubj"
+        },
+        {
+          "text": "melted",
+          "upos": "VERB",
+          "lemma": "melt",
+          "deprel": "root"
+        }
+      ]
+    },
+    {
+      "name": "hyphenated",
+      "description": "hyphenated compound (cleaned_text preserves -)",
+      "input_words": [
+        "the",
+        "ice-cream",
+        "melted"
+      ],
+      "input_count": 3,
+      "output_count": 3,
+      "boundary_preserved": true,
+      "output_tokens": [
+        {
+          "text": "the",
+          "upos": "DET",
+          "lemma": "the",
+          "deprel": "det"
+        },
+        {
+          "text": "ice-cream",
+          "upos": "NOUN",
+          "lemma": "ice-cream",
+          "deprel": "nsubj"
+        },
+        {
+          "text": "melted",
+          "upos": "VERB",
+          "lemma": "melt",
+          "deprel": "root"
+        }
+      ]
+    },
+    {
+      "name": "contraction",
+      "description": "contraction with apostrophe",
+      "input_words": [
+        "I",
+        "don't",
+        "know"
+      ],
+      "input_count": 3,
+      "output_count": 3,
+      "boundary_preserved": true,
+      "output_tokens": [
+        {
+          "text": "I",
+          "upos": "PRON",
+          "lemma": "I",
+          "deprel": "nsubj"
+        },
+        {
+          "text": "don't",
+          "upos": "ADV",
+          "lemma": "don't",
+          "deprel": "advmod"
+        },
+        {
+          "text": "know",
+          "upos": "VERB",
+          "lemma": "know",
+          "deprel": "root"
+        }
+      ]
+    },
+    {
+      "name": "expanded_shortening",
+      "description": "(be)cause expanded to because",
+      "input_words": [
+        "because",
+        "I",
+        "said"
+      ],
+      "input_count": 3,
+      "output_count": 3,
+      "boundary_preserved": true,
+      "output_tokens": [
+        {
+          "text": "because",
+          "upos": "SCONJ",
+          "lemma": "because",
+          "deprel": "mark"
+        },
+        {
+          "text": "I",
+          "upos": "PRON",
+          "lemma": "I",
+          "deprel": "nsubj"
+        },
+        {
+          "text": "said",
+          "upos": "VERB",
+          "lemma": "say",
+          "deprel": "root"
+        }
+      ]
+    },
+    {
+      "name": "unexpanded_shortening",
+      "description": "shortening NOT expanded",
+      "input_words": [
+        "cause",
+        "I",
+        "said"
+      ],
+      "input_count": 3,
+      "output_count": 3,
+      "boundary_preserved": true,
+      "output_tokens": [
+        {
+          "text": "cause",
+          "upos": "SCONJ",
+          "lemma": "cause",
+          "deprel": "mark"
+        },
+        {
+          "text": "I",
+          "upos": "PRON",
+          "lemma": "I",
+          "deprel": "nsubj"
+        },
+        {
+          "text": "said",
+          "upos": "VERB",
+          "lemma": "say",
+          "deprel": "root"
+        }
+      ]
+    },
+    {
+      "name": "accented",
+      "description": "French accented (English model, expect degraded POS)",
+      "input_words": [
+        "élève",
+        "parle",
+        "français"
+      ],
+      "input_count": 3,
+      "output_count": 3,
+      "boundary_preserved": true,
+      "output_tokens": [
+        {
+          "text": "élève",
+          "upos": "X",
+          "lemma": "élève",
+          "deprel": "root"
+        },
+        {
+          "text": "parle",
+          "upos": "PROPN",
+          "lemma": "parle",
+          "deprel": "flat"
+        },
+        {
+          "text": "français",
+          "upos": "X",
+          "lemma": "français",
+          "deprel": "flat"
+        }
+      ]
+    },
+    {
+      "name": "single_letters",
+      "description": "abbreviation-like single letters",
+      "input_words": [
+        "I",
+        "a",
+        "x"
+      ],
+      "input_count": 3,
+      "output_count": 3,
+      "boundary_preserved": true,
+      "output_tokens": [
+        {
+          "text": "I",
+          "upos": "PRON",
+          "lemma": "I",
+          "deprel": "nsubj"
+        },
+        {
+          "text": "a",
+          "upos": "DET",
+          "lemma": "a",
+          "deprel": "det"
+        },
+        {
+          "text": "x",
+          "upos": "NOUN",
+          "lemma": "x",
+          "deprel": "root"
+        }
+      ]
+    },
+    {
+      "name": "untranscribed_markers",
+      "description": "CHAT untranscribed markers",
+      "input_words": [
+        "xxx",
+        "said",
+        "yyy"
+      ],
+      "input_count": 3,
+      "output_count": 3,
+      "boundary_preserved": true,
+      "output_tokens": [
+        {
+          "text": "xxx",
+          "upos": "NOUN",
+          "lemma": "xxx",
+          "deprel": "nsubj"
+        },
+        {
+          "text": "said",
+          "upos": "VERB",
+          "lemma": "say",
+          "deprel": "root"
+        },
+        {
+          "text": "yyy",
+          "upos": "NOUN",
+          "lemma": "yyy",
+          "deprel": "obj"
+        }
+      ]
+    },
+    {
+      "name": "bare_parens",
+      "description": "bare parens as separate tokens",
+      "input_words": [
+        "the",
+        "(",
+        "thing",
+        ")"
+      ],
+      "input_count": 4,
+      "output_count": 4,
+      "boundary_preserved": true,
+      "output_tokens": [
+        {
+          "text": "the",
+          "upos": "DET",
+          "lemma": "the",
+          "deprel": "det"
+        },
+        {
+          "text": "(",
+          "upos": "PUNCT",
+          "lemma": "(",
+          "deprel": "punct"
+        },
+        {
+          "text": "thing",
+          "upos": "NOUN",
+          "lemma": "thing",
+          "deprel": "root"
+        },
+        {
+          "text": ")",
+          "upos": "PUNCT",
+          "lemma": ")",
+          "deprel": "punct"
+        }
+      ]
+    },
+    {
+      "name": "compound_icecream",
+      "description": "compound form comparison: cleaned_text (+ stripped)",
+      "input_words": [
+        "the",
+        "icecream",
+        "is",
+        "good"
+      ],
+      "input_count": 4,
+      "output_count": 4,
+      "boundary_preserved": true,
+      "output_tokens": [
+        {
+          "text": "the",
+          "upos": "DET",
+          "lemma": "the",
+          "deprel": "det"
+        },
+        {
+          "text": "icecream",
+          "upos": "NOUN",
+          "lemma": "icecream",
+          "deprel": "nsubj"
+        },
+        {
+          "text": "is",
+          "upos": "AUX",
+          "lemma": "be",
+          "deprel": "cop"
+        },
+        {
+          "text": "good",
+          "upos": "ADJ",
+          "lemma": "good",
+          "deprel": "root"
+        }
+      ]
+    },
+    {
+      "name": "compound_ice-cream",
+      "description": "compound form comparison: hyphenated (- preserved)",
+      "input_words": [
+        "the",
+        "ice-cream",
+        "is",
+        "good"
+      ],
+      "input_count": 4,
+      "output_count": 4,
+      "boundary_preserved": true,
+      "output_tokens": [
+        {
+          "text": "the",
+          "upos": "DET",
+          "lemma": "the",
+          "deprel": "det"
+        },
+        {
+          "text": "ice-cream",
+          "upos": "NOUN",
+          "lemma": "ice-cream",
+          "deprel": "nsubj"
+        },
+        {
+          "text": "is",
+          "upos": "AUX",
+          "lemma": "be",
+          "deprel": "cop"
+        },
+        {
+          "text": "good",
+          "upos": "ADJ",
+          "lemma": "good",
+          "deprel": "root"
+        }
+      ]
+    }
+  ],
+  "boundary_breaks": []
+}

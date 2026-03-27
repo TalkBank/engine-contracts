@@ -150,6 +150,15 @@ class TokenizerProbeResult(BaseModel):
 # ---------------------------------------------------------------------------
 
 
+class TokenAnnotation(BaseModel):
+    """A single token with its linguistic annotations from Stanza."""
+
+    text: str
+    upos: str = Field(description="Universal POS tag.")
+    lemma: str
+    deprel: str = Field(default="", description="Dependency relation label.")
+
+
 class PretokenizedBoundaryResult(BaseModel):
     """Result of testing whether a pretokenized engine preserves word boundaries."""
 
@@ -162,19 +171,6 @@ class PretokenizedBoundaryResult(BaseModel):
         description="True if output token count matches input word count."
     )
     output_tokens: list[TokenAnnotation]
-
-
-class TokenAnnotation(BaseModel):
-    """A single token with its linguistic annotations from Stanza."""
-
-    text: str
-    upos: str = Field(description="Universal POS tag.")
-    lemma: str
-    deprel: str = Field(default="", description="Dependency relation label.")
-
-
-# Fix forward reference — Pydantic v2 handles this via model_rebuild
-PretokenizedBoundaryResult.model_rebuild()
 
 
 class PretokenizedProbeResult(BaseModel):
