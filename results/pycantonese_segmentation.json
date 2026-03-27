@@ -1,0 +1,151 @@
+{
+  "engine": "pycantonese",
+  "engine_version": "4.2.0",
+  "segmentation_tests": [
+    {
+      "input_text": "你好",
+      "description": "common greeting: nei5 hou2",
+      "segments": [
+        "你",
+        "好"
+      ],
+      "segment_count": 2
+    },
+    {
+      "input_text": "食飯",
+      "description": "eat rice: sik6 faan6",
+      "segments": [
+        "食飯"
+      ],
+      "segment_count": 1
+    },
+    {
+      "input_text": "今日天氣很好",
+      "description": "today weather is good (multi-word)",
+      "segments": [
+        "今日",
+        "天氣",
+        "很",
+        "好"
+      ],
+      "segment_count": 4
+    },
+    {
+      "input_text": "嗎？",
+      "description": "sentence with CJK question mark",
+      "segments": [
+        "嗎",
+        "？"
+      ],
+      "segment_count": 2
+    },
+    {
+      "input_text": "你好hello",
+      "description": "mixed CJK + Latin",
+      "segments": [
+        "你",
+        "好",
+        "hello"
+      ],
+      "segment_count": 3
+    },
+    {
+      "input_text": "hello",
+      "description": "pure Latin (no CJK)",
+      "segments": [
+        "hello"
+      ],
+      "segment_count": 1
+    },
+    {
+      "input_text": "你",
+      "description": "single character",
+      "segments": [
+        "你"
+      ],
+      "segment_count": 1
+    }
+  ],
+  "jyutping_tests": [
+    {
+      "input_text": "你好",
+      "description": "common greeting -> nei5hou2",
+      "mappings": [
+        [
+          "你",
+          "nei5"
+        ],
+        [
+          "好",
+          "hou2"
+        ]
+      ],
+      "unmapped_segments": []
+    },
+    {
+      "input_text": "食飯",
+      "description": "eat rice -> sik6faan6",
+      "mappings": [
+        [
+          "食飯",
+          "sik6faan6"
+        ]
+      ],
+      "unmapped_segments": []
+    },
+    {
+      "input_text": "今日",
+      "description": "today -> gam1jat6",
+      "mappings": [
+        [
+          "今日",
+          "gam1jat6"
+        ]
+      ],
+      "unmapped_segments": []
+    },
+    {
+      "input_text": "hello",
+      "description": "Latin text (should return None for each char)",
+      "mappings": [
+        [
+          "hello",
+          "haa1lou2"
+        ]
+      ],
+      "unmapped_segments": []
+    },
+    {
+      "input_text": "你好！",
+      "description": "greeting with punctuation (! should be None)",
+      "mappings": [
+        [
+          "你",
+          "nei5"
+        ],
+        [
+          "好",
+          "hou2"
+        ],
+        [
+          "！",
+          null
+        ]
+      ],
+      "unmapped_segments": [
+        "！"
+      ]
+    },
+    {
+      "input_text": "一二三",
+      "description": "numbers one two three",
+      "mappings": [
+        [
+          "一二三",
+          "jat1ji6saam1"
+        ]
+      ],
+      "unmapped_segments": []
+    }
+  ]
+}

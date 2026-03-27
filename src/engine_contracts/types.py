@@ -190,6 +190,45 @@ class PretokenizedProbeResult(BaseModel):
 
 
 # ---------------------------------------------------------------------------
+# PyCantonese probe (segmentation + jyutping)
+# ---------------------------------------------------------------------------
+
+
+class SegmentationResult(BaseModel):
+    """Result of segmenting a single input string."""
+
+    input_text: str
+    description: str
+    segments: list[str]
+    segment_count: int
+
+
+class JyutpingMapping(BaseModel):
+    """Result of converting a single input to jyutping."""
+
+    input_text: str
+    description: str
+    mappings: list[tuple[str, str | None]] = Field(
+        description="List of (segment, jyutping_or_None) pairs."
+    )
+    unmapped_segments: list[str] = Field(
+        description="Segments that returned None for jyutping."
+    )
+
+
+class PyCantonesProbeResult(BaseModel):
+    """Full result of probing PyCantonese segmentation and jyutping.
+
+    Produced by: ``probes/pycantonese.py``
+    """
+
+    engine: str
+    engine_version: str
+    segmentation_tests: list[SegmentationResult]
+    jyutping_tests: list[JyutpingMapping]
+
+
+# ---------------------------------------------------------------------------
 # Corpus character inventory
 # ---------------------------------------------------------------------------
 
