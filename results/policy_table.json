@@ -1,0 +1,159 @@
+{
+  "generated_at": "2026-03-27T21:50:17.096260+00:00",
+  "consumers": [
+    {
+      "engine": "torchaudio.pipelines.MMS_FA",
+      "task": "forced_alignment",
+      "input_granularity": "per_character",
+      "accepted_chars": "a-z lowercase, straight apostrophe ('), space, pipe (|)",
+      "dangerous_chars": "- (HYPHEN-MINUS) maps to CTC blank index 0",
+      "normalization_needed": "lowercase, strip blank-mapped chars (hyphen), uroman for non-Latin scripts, re.sub('[^a-z\\' ]', ' ', text)",
+      "upstream_doc_url": "https://docs.pytorch.org/audio/stable/tutorials/forced_alignment_for_multilingual_data_tutorial.html",
+      "test_coverage": "contract_tested",
+      "notes": "Dictionary has 29 entries. Wildcard (*) at index 28. DEPRECATED: removal in torchaudio 2.9."
+    },
+    {
+      "engine": "openai-whisper",
+      "task": "forced_alignment",
+      "input_granularity": "subword",
+      "accepted_chars": "All Unicode (BPE tokenizer)",
+      "dangerous_chars": "Smart quotes (U+2019) decompose to bytes — imprecise but functional",
+      "normalization_needed": "None required — tokenizer handles all character classes",
+      "upstream_doc_url": "https://github.com/openai/whisper/blob/main/whisper/tokenizer.py",
+      "test_coverage": "contract_tested",
+      "notes": "Multilingual: True. Roundtrip mismatches: none. No official forced alignment API — internal cross-attention mechanism."
+    },
+    {
+      "engine": "stanza",
+      "task": "pos_tagging_lemma_depparse",
+      "input_granularity": "pretokenized_word",
+      "accepted_chars": "All Unicode (preserves input boundaries exactly)",
+      "dangerous_chars": "None found",
+      "normalization_needed": "Space-join words per utterance. No character-level cleanup needed.",
+      "upstream_doc_url": "https://stanfordnlp.github.io/stanza/tokenize.html",
+      "test_coverage": "contract_tested",
+      "notes": "Boundary breaks: none. MWT does NOT work with tokenize_pretokenized=True (GitHub #95). batchalign3 uses custom _tokenizer_realign.py workaround."
+    },
+    {
+      "engine": "stanza",
+      "task": "utterance_segmentation",
+      "input_granularity": "pretokenized_word",
+      "accepted_chars": "All Unicode",
+      "dangerous_chars": "None found",
+      "normalization_needed": "Space-join words. Constituency parsing enabled.",
+      "upstream_doc_url": "https://stanfordnlp.github.io/stanza/tokenize.html",
+      "test_coverage": "contract_tested",
+      "notes": "Same Stanza pipeline as morphosyntax, different processors."
+    },
+    {
+      "engine": "stanza",
+      "task": "coreference_resolution",
+      "input_granularity": "pretokenized_word",
+      "accepted_chars": "All Unicode",
+      "dangerous_chars": "None found",
+      "normalization_needed": "Space-join words per sentence, newline-separate sentences.",
+      "upstream_doc_url": "https://stanfordnlp.github.io/stanza/tokenize.html",
+      "test_coverage": "contract_tested",
+      "notes": "English only. Uses ontonotes-singletons_roberta-large-lora."
+    },
+    {
+      "engine": "pycantonese",
+      "task": "word_segmentation",
+      "input_granularity": "sentence",
+      "accepted_chars": "CJK characters, Latin passthrough, punctuation separated",
+      "dangerous_chars": "None found",
+      "normalization_needed": "Join per-character ASR tokens without spaces before segmentation.",
+      "upstream_doc_url": "https://pycantonese.org/word_segmentation.html",
+      "test_coverage": "contract_tested",
+      "notes": "Uses longest string matching on HKCanCor + rime-cantonese."
+    },
+    {
+      "engine": "pycantonese",
+      "task": "jyutping_conversion",
+      "input_granularity": "sentence",
+      "accepted_chars": "CJK characters (Latin gets loanword jyutping)",
+      "dangerous_chars": "CJK punctuation returns None — must handle fallback",
+      "normalization_needed": "None — characters_to_jyutping() segments internally.",
+      "upstream_doc_url": "https://pycantonese.org/generated/pycantonese.characters_to_jyutping.html",
+      "test_coverage": "contract_tested",
+      "notes": "Unknown characters get None jyutping (documented behavior)."
+    },
+    {
+      "engine": "openai-whisper",
+      "task": "asr",
+      "input_granularity": "audio_only",
+      "accepted_chars": "N/A (audio input only)",
+      "dangerous_chars": "N/A",
+      "normalization_needed": "N/A",
+      "upstream_doc_url": "https://github.com/openai/whisper",
+      "test_coverage": "not_applicable",
+      "notes": "No text input — receives audio waveform or file path only."
+    },
+    {
+      "engine": "rev.ai",
+      "task": "asr",
+      "input_granularity": "audio_only",
+      "accepted_chars": "N/A (audio input only)",
+      "dangerous_chars": "N/A",
+      "normalization_needed": "N/A",
+      "upstream_doc_url": "https://docs.rev.ai/",
+      "test_coverage": "not_applicable",
+      "notes": "No text input — receives audio waveform or file path only."
+    },
+    {
+      "engine": "tencent-cloud",
+      "task": "asr",
+      "input_granularity": "audio_only",
+      "accepted_chars": "N/A (audio input only)",
+      "dangerous_chars": "N/A",
+      "normalization_needed": "N/A",
+      "upstream_doc_url": "https://cloud.tencent.com/document/product/1093",
+      "test_coverage": "not_applicable",
+      "notes": "No text input — receives audio waveform or file path only."
+    },
+    {
+      "engine": "aliyun-nls",
+      "task": "asr",
+      "input_granularity": "audio_only",
+      "accepted_chars": "N/A (audio input only)",
+      "dangerous_chars": "N/A",
+      "normalization_needed": "N/A",
+      "upstream_doc_url": "https://help.aliyun.com/product/30413.html",
+      "test_coverage": "not_applicable",
+      "notes": "No text input — receives audio waveform or file path only."
+    },
+    {
+      "engine": "pyannote/nemo",
+      "task": "speaker_diarization",
+      "input_granularity": "audio_only",
+      "accepted_chars": "N/A (audio input only)",
+      "dangerous_chars": "N/A",
+      "normalization_needed": "N/A",
+      "upstream_doc_url": "https://github.com/pyannote/pyannote-audio",
+      "test_coverage": "not_applicable",
+      "notes": "No text input — receives audio waveform or file path only."
+    },
+    {
+      "engine": "google-translate",
+      "task": "translation",
+      "input_granularity": "sentence",
+      "accepted_chars": "All Unicode (cloud API)",
+      "dangerous_chars": "None documented",
+      "normalization_needed": "Space-join cleaned words per utterance.",
+      "upstream_doc_url": "https://docs.cloud.google.com/translate/docs/reference/rest/v3/projects/translateText",
+      "test_coverage": "undocumented",
+      "notes": "Limit: <30,000 codepoints. MIME text/plain. Not locally probeable."
+    },
+    {
+      "engine": "seamless-m4t-v2",
+      "task": "translation",
+      "input_granularity": "sentence",
+      "accepted_chars": "All Unicode (SentencePiece tokenizer)",
+      "dangerous_chars": "None documented",
+      "normalization_needed": "None documented.",
+      "upstream_doc_url": "https://huggingface.co/docs/transformers/model_doc/seamless_m4t_v2",
+      "test_coverage": "planned",
+      "notes": "Least documented engine. SentencePiece tokenizer, 96 languages."
+    }
+  ]
+}
